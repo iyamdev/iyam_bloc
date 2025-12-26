@@ -1,39 +1,56 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# iyam_bloc
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+`iyam_bloc` adalah **package template BLoC** untuk Flutter yang menyediakan
+**state management boilerplate siap pakai**, generic, dan reusable lintas aplikasi.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+Package ini dibangun di atas:
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- `bloc` / `flutter_bloc`
+- `iyam_core` (repository & result abstraction)
 
-## Features
+Tujuan utama `iyam_bloc`:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- mengurangi boilerplate BLoC
+- menyeragamkan pola load, pagination, dan form
+- menjaga arsitektur tetap bersih & type-safe
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## ✨ Features
 
-## Usage
+### 🔄 Load → Success → Error
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+- `BaseLoadBloc`
+- State standar: initial, loading, success, error
+- Widget helper: `BlocBuilderPage`, `BlocConsumerPage`
 
-```dart
-const like = 'sample';
+### 📄 Pagination
+
+- `BasePaginationBloc`
+- `PaginationState`
+- Infinite scroll support
+- Footer loading & error handling
+- Widget helper: `BlocPaginationView`
+
+### 📝 Form Handling
+
+- `BaseFormBloc`
+- State submit, success, error
+- Widget helper: `BlocFormBuilder`
+
+### 🧱 Page Templates
+
+- `BlocBuilderPage`
+- `BlocConsumerPage`
+- `BlocScaffoldPage`
+
+---
+
+## 📦 Installation
+
+### pub.dev
+
+```yaml
+dependencies:
+  iyam_bloc: ^0.1.0
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
