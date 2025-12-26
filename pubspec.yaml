@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  bloc: ^8.1.4
+  equatable: ^2.0.5
+  iyam_core:
+    path: ../iyam_core
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
