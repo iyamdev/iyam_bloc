@@ -1,7 +1,13 @@
 name: iyam_bloc
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: >
+  Reusable and type-safe BLoC templates for Flutter apps.
+  Provides load, pagination, and form BLoC patterns with
+  ready-to-use widget helpers.
+
+version: 0.1.0
+homepage: https://github.com/iyamdev/iyam_bloc
+repository: https://github.com/iyamdev/iyam_bloc
+issue_tracker: https://github.com/iyamdev/iyam_bloc/issues
 
 environment:
   sdk: ^3.10.4
