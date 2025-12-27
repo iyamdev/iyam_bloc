@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.1.4] - 2025-12-27
+
+### Changed
+
+- Upgrade `iyam_core` to ^0.1.3
+- Upgrade `flutter_bloc` to ^9.1.1
+
 ## [0.1.3] - 2025-12-27
 
 ### Changed
+
 - Upgrade `bloc` to ^9.1.0
 - Upgrade `equatable` to ^2.0.7
 

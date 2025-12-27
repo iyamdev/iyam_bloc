@@ -26,4 +26,7 @@ class FormState<T> extends BaseState {
       error: error,
     );
   }
+
+  @override
+  List<Object?> get props => [value, isSubmitting, isSuccess, error];
 }
