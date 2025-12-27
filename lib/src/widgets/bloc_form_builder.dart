@@ -7,11 +7,18 @@ class BlocFormBuilder<B extends StateStreamable<FormState<T>>, T>
     extends StatelessWidget {
   final Widget Function(BuildContext context, FormState<T> state) builder;
 
-  const BlocFormBuilder({super.key, required this.builder});
+  final void Function(BuildContext context, FormState<T> state)? listener;
+
+  const BlocFormBuilder({super.key, required this.builder, this.listener});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<B, FormState<T>>(
+    return BlocConsumer<B, FormState<T>>(
+      listener: (context, state) {
+        if (listener != null) {
+          listener!(context, state);
+        }
+      },
       builder: (context, state) {
         return builder(context, state);
       },
