@@ -4,7 +4,7 @@ description: >
   Provides load, pagination, and form BLoC patterns with
   ready-to-use widget helpers.
 
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/iyamdev/iyam_bloc
 repository: https://github.com/iyamdev/iyam_bloc
 issue_tracker: https://github.com/iyamdev/iyam_bloc/issues
@@ -16,10 +16,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^8.1.4
-  equatable: ^2.0.5
-  iyam_core: ^0.1.0
-  flutter_bloc: ^8.1.6
+  bloc: ^9.1.0
+  equatable: ^2.0.7
+  iyam_core: ^0.1.3
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:

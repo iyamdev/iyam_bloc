@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:iyam_core/data/repository/repository_result.dart';
+import 'package:iyam_core/iyam_core.dart';
 import '../event/load_event.dart';
 import '../state/base_state.dart';
 import '../state/load_state.dart';

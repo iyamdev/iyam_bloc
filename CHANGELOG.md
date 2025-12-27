@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.1.3] - 2025-12-27
+
+### Changed
+- Upgrade `bloc` to ^9.1.0
+- Upgrade `equatable` to ^2.0.7
+
 ## [0.1.2] - 2025-12-27
 
 ### Changed
