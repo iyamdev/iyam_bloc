@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:iyam_core/iyam_core.dart';
+import 'package:eitherx/eitherx.dart';
 
+import '../model/pagination_result.dart';
 import '../event/pagination_event.dart';
 import '../state/pagination_state.dart';
 
@@ -15,7 +16,7 @@ abstract class BasePaginationBloc<T>
   }
 
   /// Implement di bloc konkret
-  Future<RepositoryResult<PaginationResult<T>>> fetchPage(int page);
+  Future<Either<String, PaginationResult<T>>> fetchPage(int page);
 
   Future<void> _onFirstPage(
     LoadFirstPage event,
@@ -25,17 +26,16 @@ abstract class BasePaginationBloc<T>
     _page = 1;
 
     final result = await fetchPage(_page);
-    if (result is RepoSuccess<PaginationResult<T>>) {
-      emit(
+    result.fold(
+      (error) => emit(state.copyWith(isLoading: false)),
+      (data) => emit(
         PaginationState(
-          items: result.data.items,
+          items: data.items,
           isLoading: false,
-          hasMore: result.data.hasMore,
+          hasMore: data.hasMore,
         ),
-      );
-    } else {
-      emit(state.copyWith(isLoading: false));
-    }
+      ),
+    );
   }
 
   Future<void> _onNextPage(
@@ -48,17 +48,16 @@ abstract class BasePaginationBloc<T>
     _page++;
 
     final result = await fetchPage(_page);
-    if (result is RepoSuccess<PaginationResult<T>>) {
-      emit(
+    result.fold(
+      (error) => emit(state.copyWith(isLoading: false)),
+      (data) => emit(
         PaginationState(
-          items: [...state.items, ...result.data.items],
+          items: [...state.items, ...data.items],
           isLoading: false,
-          hasMore: result.data.hasMore,
+          hasMore: data.hasMore,
         ),
-      );
-    } else {
-      emit(state.copyWith(isLoading: false));
-    }
+      ),
+    );
   }
 
   Future<void> _onRefresh(

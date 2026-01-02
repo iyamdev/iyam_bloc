@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.0] - 2026-01-03
+
+### Changed
+
+- **BREAKING**: Removed `iyam_core` dependency and replaced with `eitherx`.
+- **BREAKING**: Refactored `BaseLoadBloc`, `BasePaginationBloc`, and `BaseFormBloc` to return `Either<String, T>` instead of `RepositoryResult`.
+- Added `PaginationResult` model locally as it was removed with `iyam_core`.
+- Upgrade `bloc` to ^9.2.0.
+
 ## [0.1.4] - 2025-12-27
 
 ### Changed

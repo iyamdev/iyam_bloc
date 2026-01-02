@@ -6,7 +6,6 @@
 Package ini dibangun di atas:
 
 - `bloc` / `flutter_bloc`
-- `iyam_core` (repository & result abstraction)
 
 Tujuan utama `iyam_bloc`:
 

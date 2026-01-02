@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:iyam_core/iyam_core.dart';
+import 'package:eitherx/eitherx.dart';
 import '../event/form_event.dart';
 import '../state/form_state.dart';
 
@@ -9,7 +9,7 @@ abstract class BaseFormBloc<T> extends Bloc<FormEvent, FormState<T>> {
     on<FormSubmitted>(_onSubmit);
   }
 
-  Future<RepositoryResult<void>> submit(T value);
+  Future<Either<String, void>> submit(T value);
 
   void _onChange(FormChanged<T> event, Emitter<FormState<T>> emit) {
     emit(state.copyWith(value: event.value));
@@ -22,10 +22,9 @@ abstract class BaseFormBloc<T> extends Bloc<FormEvent, FormState<T>> {
     emit(state.copyWith(isSubmitting: true));
 
     final result = await submit(state.value);
-    if (result is RepoSuccess) {
-      emit(state.copyWith(isSubmitting: false, isSuccess: true));
-    } else if (result is RepoFailure) {
-      emit(state.copyWith(isSubmitting: false, error: result.message));
-    }
+    result.fold(
+      (error) => emit(state.copyWith(isSubmitting: false, error: error)),
+      (_) => emit(state.copyWith(isSubmitting: false, isSuccess: true)),
+    );
   }
 }
