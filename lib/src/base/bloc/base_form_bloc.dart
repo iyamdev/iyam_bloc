@@ -9,7 +9,7 @@ abstract class BaseFormBloc<T> extends Bloc<FormEvent, FormState<T>> {
     on<FormSubmitted>(_onSubmit);
   }
 
-  Future<Either<String, void>> submit(T value);
+  Future<Either<String, dynamic>> submit(T value);
 
   void _onChange(FormChanged<T> event, Emitter<FormState<T>> emit) {
     emit(state.copyWith(value: event.value));
@@ -24,7 +24,9 @@ abstract class BaseFormBloc<T> extends Bloc<FormEvent, FormState<T>> {
     final result = await submit(state.value);
     result.fold(
       (error) => emit(state.copyWith(isSubmitting: false, error: error)),
-      (_) => emit(state.copyWith(isSubmitting: false, isSuccess: true)),
+      (data) => emit(
+        state.copyWith(isSubmitting: false, isSuccess: true, data: data),
+      ),
     );
   }
 }
