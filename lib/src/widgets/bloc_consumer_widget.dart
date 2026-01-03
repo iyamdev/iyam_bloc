@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../base/state/base_state.dart';
 import '../base/state/load_state.dart';
 
-class BlocConsumerPage<B extends StateStreamable<BaseState>, T>
+class BlocConsumerWidget<B extends StateStreamable<BaseState>, T>
     extends StatelessWidget {
-  final Widget Function() loading;
-  final Widget Function(T data) success;
-  final Widget Function(String message) error;
+  final Widget Function()? loading;
+  final Widget Function(T data)? success;
+  final Widget Function(String message)? error;
+  final Widget Function(BuildContext context, BaseState state)? builder;
 
   /// dipanggil saat SuccessState
   final void Function(BuildContext context, T data)? onSuccess;
@@ -16,14 +17,19 @@ class BlocConsumerPage<B extends StateStreamable<BaseState>, T>
   /// dipanggil saat ErrorState
   final void Function(BuildContext context, String message)? onError;
 
-  const BlocConsumerPage({
+  const BlocConsumerWidget({
     super.key,
-    required this.loading,
-    required this.success,
-    required this.error,
+    this.loading,
+    this.success,
+    this.error,
+    this.builder,
     this.onSuccess,
     this.onError,
-  });
+  }) : assert(
+         builder != null ||
+             (loading != null && success != null && error != null),
+         'Either builder or (loading, success, error) must be provided',
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +43,20 @@ class BlocConsumerPage<B extends StateStreamable<BaseState>, T>
         }
       },
       builder: (context, state) {
+        if (builder != null) {
+          return builder!(context, state);
+        }
+
         if (state is LoadingState) {
-          return loading();
+          return loading!();
         }
 
         if (state is SuccessState<T>) {
-          return success(state.data);
+          return success!(state.data);
         }
 
         if (state is ErrorState) {
-          return error(state.message);
+          return error!(state.message);
         }
 
         return const SizedBox.shrink();

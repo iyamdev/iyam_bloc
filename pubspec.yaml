@@ -4,7 +4,7 @@ description: >
   Provides load, pagination, and form BLoC patterns with
   ready-to-use widget helpers.
 
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/iyamdev/iyam_bloc
 repository: https://github.com/iyamdev/iyam_bloc
 issue_tracker: https://github.com/iyamdev/iyam_bloc/issues
